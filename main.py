@@ -17,23 +17,20 @@ async def main():
     bot = Bot(token=API_TOKEN)
     dp = Dispatcher()
 
-    # Инициализация базы данных
     db_handler = DatabaseHandler(DATABASE_NAME)
     await db_handler.create_table()
 
-    # Инициализация хендлеров
     quiz_handler = QuizHandler(db_handler)
     callback_handler = CallbackHandler(db_handler)
 
-    # Регистрация хендлеров
     dp.message.register(cmd_start, Command("start"))
     dp.message.register(quiz_handler.cmd_quiz, Command("quiz"))
     dp.message.register(quiz_handler.cmd_quiz, F.text == "Начать игру")
 
     dp.callback_query.register(
-        callback_handler.right_answer, F.data == "right_answer")
+        callback_handler.right_answer, F.data.startswith("right_answer"))
     dp.callback_query.register(
-        callback_handler.wrong_answer, F.data == "wrong_answer")
+        callback_handler.wrong_answer, F.data.startswith("wrong_answer"))
 
     await dp.start_polling(bot)
 
