@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from functools import partial
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
 from aiogram import F
@@ -24,7 +25,10 @@ async def main():
     quiz_handler = QuizHandler(db_handler)
     callback_handler = CallbackHandler(db_handler)
 
-    dp.message.register(cmd_start, Command("start"))
+    dp.message.register(
+        partial(cmd_start, db_handler=db_handler),
+        Command("start")
+    )
     dp.message.register(quiz_handler.cmd_quiz, Command("quiz"))
     dp.message.register(quiz_handler.cmd_quiz, F.text == "Начать игру")
     dp.message.register(cmd_stats, Command("stats"))

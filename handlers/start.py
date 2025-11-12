@@ -1,12 +1,9 @@
 from aiogram import types
 from aiogram.filters.command import Command
 from keyboards.builders import get_start_keyboard
-from database.db_handler import DatabaseHandler
-
-db_handler = DatabaseHandler("quiz_bot.db")
 
 
-async def cmd_start(message: types.Message):
+async def cmd_start(message: types.Message, db_handler):
     await db_handler.create_table()
 
     stats = await db_handler.get_stats(message.from_user.id)

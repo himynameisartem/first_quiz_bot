@@ -5,7 +5,7 @@ from keyboards.builders import get_start_keyboard
 db_handler = DatabaseHandler('quiz_bot.db')
 
 
-async def cmd_stats(message: types.Message):
+async def cmd_stats(message: types.Message, db_handler):
     stats = await db_handler.get_stats(message.from_user.id)
     text = (
         f"📊 Ваша статистика:\n"
