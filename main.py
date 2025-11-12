@@ -27,6 +27,8 @@ async def main():
     callback_handler = CallbackHandler(db_handler)
 
     async def handle_retry(message: types.Message):
+        user_id = message.from_user.id
+        await callback_handler.reset_user_progress(user_id)
         await message.answer("Готовы начать заново?", reply_markup=get_start_keyboard(start_label="Начать заново"))
         await quiz_handler.cmd_quiz(message)
 
@@ -41,6 +43,7 @@ async def main():
         partial(cmd_stats, db_handler=db_handler), Command("stats"))
     dp.message.register(partial(cmd_stats, db_handler=db_handler),
                         F.text == "Посмотреть статистику")
+    dp.message.register(handle_retry, F.text == "Начать заново")
 
     dp.callback_query.register(
         callback_handler.right_answer, F.data.startswith("right_answer"))

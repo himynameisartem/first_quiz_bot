@@ -2,7 +2,7 @@ from aiogram import types
 from aiogram.filters.command import Command
 from aiogram import F
 from data.quiz_data import quiz_data
-from keyboards.builders import generate_options_keyboard
+from keyboards.builders import generate_options_keyboard, get_start_keyboard
 
 
 class QuizHandler:
@@ -23,5 +23,5 @@ class QuizHandler:
         await self.get_question(message, user_id)
 
     async def cmd_quiz(self, message: types.Message):
-        await message.answer(f"Давайте начнем квиз!")
+        await message.answer("Давайте начнем квиз!", reply_markup=get_start_keyboard(start_label="Начать заново"))
         await self.new_quiz(message)
