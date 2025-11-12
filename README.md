@@ -1,32 +1,32 @@
-# First Quiz Bot / Бот «Первая Викторина»
+# Quiz Bot / Telegram bot «Викторина»
 
 ---
 
-EN — English
-=============
-
 Table of Contents
 -----------------
-- [Overview](#overview)
-- [Features](#features)
-- [Commands & Keyboards](#commands--keyboards)
-- [Installation (macOS)](#installation-macos)
-- [Configuration](#configuration)
-- [Run](#run)
-- [Database Schema](#database-schema)
-- [Project Structure](#project-structure)
-- [How to test (for the reviewer)](#how-to-test-for-the-reviewer)
-- [Troubleshooting](#troubleshooting)
-- [Recommendations & Improvements](#recommendations--improvements)
-- [Privacy & License](#privacy--license)
-- [Contact / Bot username](#contact--bot-username)
+- [English Version](#english-version)
+  - [Overview](#overview)
+  - [Features](#features)
+  - [Commands & Keyboards](#commands--keyboards)
+  - [Installation](#installation)
+  - [Project Structure](#project-structure)
+  - [Contact / Bot username](#contact--bot-username)
+  - [Author](#author)
+- [Русская версия](#русская-версия)
+  - [Описание](#описание)
+  - [Функционал](#функционал)
+  - [Команды](#команды)
+  - [Установка](#установка)
+  - [Структура проекта](#структура-проекта)
+  - [Контакт / Имя бота](#контакт--имя-бота)
+  - [Автор](#автор)
 
-Overview
---------
+## English Version
+
+### Overview
 Simple Telegram quiz bot built with aiogram and aiosqlite. Presents multiple-choice questions, saves the user's last result and basic statistics (number of games, best score). Reply keyboard allows starting, restarting and viewing stats.
 
-Features
---------
+### Features
 - Start quiz and answer multiple-choice questions.
 - Save last result, total games and best score.
 - Reply keyboard with:
@@ -34,17 +34,15 @@ Features
   - "View statistics"
 - Ability to interrupt and restart the quiz at any time.
 
-Commands & Keyboards
---------------------
+### Commands & Keyboards
 - /start — initialize DB if needed and show start keyboard
 - /quiz — start the quiz
 - /stats — show user statistics
 
-Installation (macOS)
---------------------
+### Installation
 1. Clone the repository from GitHub (replace <REPO_URL> with your repo link):
    ```bash
-   git clone <REPO_URL>
+   git clone https://github.com/himynameisartem/first_quiz_bot.git
    cd first_quiz_bot
    ```
 
@@ -63,8 +61,7 @@ Installation (macOS)
    pip install aiogram aiosqlite
    ```
 
-Project Structure
------------------
+### Project Structure
 - main.py — app entry, handlers registration
 - handlers/
   - quiz.py — quiz flow (start, send questions)
@@ -80,38 +77,30 @@ Project Structure
 - config.py — token and DB name (local)
 - README.md — this file
 
-Contact / Bot username
-----------------------
+### Contact / Bot username
 Replace with real bot username so your reviewer can find it:
-- Bot username: @YourBotUsername
+- Bot username: @firstStudyQuizBot
+
+### Author
+
+**Artem Kudryavtsev**
+This project demonstrates practical skills in the following areas:
+
+- Developing Telegram bots using aiogram
+- Asynchronous programming in Python (async/await, state management)
+- Working with local databases (aiosqlite, schemas, user statistics storage)
+- UX design for chat interfaces (Inline/Reply keyboards, callback handling)
+- User state and session management (question indexes, progress reset)
+- Basic user analytics (saving last results, best/total metrics)
 
 ---
 
-RU — Русская версия
-===================
+## Русская версия
 
-Оглавление
----------
-- [Описание](#описание)
-- [Функционал](#функционал)
-- [Команды и клавиатуры](#команды-и-клавиатуры)
-- [Установка (macOS)](#установка-macos)
-- [Конфигурация](#конфигурация)
-- [Запуск](#запуск)
-- [Схема БД](#схема-бд)
-- [Структура проекта](#структура-проекта)
-- [Как проверить (для проверяющего)](#как-проверить-для-проверяющего)
-- [Устранение проблем](#устранение-проблем)
-- [Рекомендации по улучшению](#рекомендации-по-улучшению)
-- [Приватность и лицензия](#приватность-и-лицензия)
-- [Контакт / Имя бота](#контакт--имя-бота)
-
-Описание
---------
+### Описание
 Простейший Telegram-бот для викторин на aiogram + aiosqlite. Задаёт вопросы с вариантами, сохраняет последний результат пользователя и базовую статистику (число игр, лучший результат). Reply-клавиатура позволяет запускать, перезапускать игру и смотреть статистику.
 
-Функционал
----------
+### Функционал
 - Прохождение квиза с вариантами ответов.
 - Сохранение результатов.
 - ReplyKeyboard:
@@ -119,17 +108,15 @@ RU — Русская версия
   - "Посмотреть статистику"
 - Возможность прервать и перезапустить квиз.
 
-Команды
--------------------
+### Команды
 - /start — инициализация (создание таблицы БД) и показ стартовой клавиатуры
 - /quiz — запустить квиз
 - /stats — показать статистику
 
-Установка (macOS)
------------------
+### Установка
 1. Клонируйте репозиторий с GitHub (замените <REPO_URL> на ссылку вашего репо):
    ```bash
-   git clone <REPO_URL>
+   git clone https://github.com/himynameisartem/first_quiz_bot.git
    cd first_quiz_bot
    ```
 
@@ -148,8 +135,7 @@ RU — Русская версия
    pip install aiogram aiosqlite
    ```
 
-Структура проекта
-----------------
+### Структура проекта
 - main.py — вход в приложение, регистрация хендлеров
 - handlers/
   - quiz.py — логика квиза
@@ -165,8 +151,18 @@ RU — Русская версия
 - config.py — токен и имя БД (локально)
 - README.md — этот файл
 
-Контакт / Имя бота
------------------
+### Контакт / Имя бота
 Замените на реальное имя бота, чтобы проверяющий мог найти:
-- Имя бота: @YourBotUsername
+- Имя бота: @firstStudyQuizBot
 
+### Автор
+
+**Артем Кудрявцев**
+Этот проект демонстрирует практические навыки в следующих областях:
+
+- Разработка Telegram‑ботов на aiogram
+- Асинхронное программирование в Python (async/await, управление состоянием)
+- Работа с локальной БД (aiosqlite, схемы, сохранение статистики пользователей)
+- Дизайн UX для чат‑интерфейсов (Inline / Reply клавиатуры, обработка колбэков)
+- Управление состоянием и сессиями пользователей (индексы вопросов, сброс прогресса)
+- Простая аналитика пользователя (сохранение последнего результата, best/total)
