@@ -1,8 +1,5 @@
 from aiogram import types
-from database.db_handler import DatabaseHandler
 from keyboards.builders import get_start_keyboard
-
-db_handler = DatabaseHandler('quiz_bot.db')
 
 
 async def cmd_stats(message: types.Message, db_handler):

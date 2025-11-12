@@ -6,7 +6,6 @@ def generate_options_keyboard(answer_options, right_answer):
     builder = InlineKeyboardBuilder()
 
     for option in answer_options:
-        # В callback_data теперь передаем и текст ответа
         callback_data = f"right_answer:{option}" if option == right_answer else f"wrong_answer:{option}"
         builder.add(types.InlineKeyboardButton(
             text=option,
@@ -17,7 +16,8 @@ def generate_options_keyboard(answer_options, right_answer):
     return builder.as_markup()
 
 
-def get_start_keyboard():
+def get_start_keyboard(start_label: str = "Начать игру"):
     builder = ReplyKeyboardBuilder()
-    builder.add(types.KeyboardButton(text="Начать игру"))
+    builder.add(types.KeyboardButton(text=start_label))
+    builder.add(types.KeyboardButton(text="Посмотреть статистику"))
     return builder.as_markup(resize_keyboard=True)

@@ -18,8 +18,11 @@ class DatabaseHandler:
 
     async def update_quiz_index(self, user_id: int, index: int):
         async with aiosqlite.connect(self.db_path) as db:
-            await db.execute('INSERT OR REPLACE INTO quiz_state (user_id, question_index) VALUES (?, ?)',
-                             (user_id, index))
+            await db.execute(
+                'INSERT INTO quiz_state (user_id, question_index) VALUES (?, ?) '
+                'ON CONFLICT(user_id) DO UPDATE SET question_index = excluded.question_index',
+                (user_id, index)
+            )
             await db.commit()
 
     async def get_quiz_index(self, user_id: int) -> int:
@@ -44,6 +47,7 @@ class DatabaseHandler:
                             (user_id, question_index, last_score, total_games, best_score)
                             VALUES (?, 0, ?, 1, ?)''',
                                      (user_id, score, score))
+                await db.execute('UPDATE quiz_state SET question_index = 0 WHERE user_id = ?', (user_id,))
                 await db.commit()
 
     async def get_stats(self, user_id: int):

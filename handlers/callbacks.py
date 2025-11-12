@@ -1,7 +1,7 @@
 from aiogram import types
 from aiogram import F
 from data.quiz_data import quiz_data
-from keyboards.builders import generate_options_keyboard
+from keyboards.builders import generate_options_keyboard, get_start_keyboard
 
 
 class CallbackHandler:
@@ -28,7 +28,12 @@ class CallbackHandler:
         else:
             score = self.scores.get(user_id, 0)
             await self.db_handler.save_result(user_id, score)
-            await callback.message.answer(f"🎉 Квиз завершён!\nВаш результат: {score}/{len(quiz_data)}")
+            await callback.bot.send_message(
+                chat_id=user_id,
+                text=f"🎉 Квиз завершён!\nВаш результат: {score}/{len(quiz_data)}",
+                reply_markup=get_start_keyboard(
+                    start_label="Попробовать ещё раз")
+            )
             self.scores.pop(user_id, None)
 
     async def wrong_answer(self, callback: types.CallbackQuery):
@@ -53,7 +58,12 @@ class CallbackHandler:
         else:
             score = self.scores.get(user_id, 0)
             await self.db_handler.save_result(user_id, score)
-            await callback.message.answer(f"🎉 Квиз завершён!\nВаш результат: {score}/{len(quiz_data)}")
+            await callback.bot.send_message(
+                chat_id=user_id,
+                text=f"🎉 Квиз завершён!\nВаш результат: {score}/{len(quiz_data)}",
+                reply_markup=get_start_keyboard(
+                    start_label="Попробовать ещё раз")
+            )
             self.scores.pop(user_id, None)
 
     async def _clear_keyboard(self, callback: types.CallbackQuery):
