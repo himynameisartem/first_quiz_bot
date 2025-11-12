@@ -9,6 +9,7 @@ from database.db_handler import DatabaseHandler
 from handlers.start import cmd_start
 from handlers.quiz import QuizHandler
 from handlers.callbacks import CallbackHandler
+from handlers.stats import cmd_stats
 
 logging.basicConfig(level=logging.INFO)
 
@@ -26,6 +27,7 @@ async def main():
     dp.message.register(cmd_start, Command("start"))
     dp.message.register(quiz_handler.cmd_quiz, Command("quiz"))
     dp.message.register(quiz_handler.cmd_quiz, F.text == "Начать игру")
+    dp.message.register(cmd_stats, Command("stats"))
 
     dp.callback_query.register(
         callback_handler.right_answer, F.data.startswith("right_answer"))
